@@ -1,0 +1,47 @@
+.AuthForm {
+    display: flex;
+    flex-flow: column; 
+    margin: auto;
+    width: 70%;
+    height: 60vh;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.FormBody{
+    margin-top: 5vh;
+}
+
+.Input{
+    display: flex;
+    flex-flow: row;
+    padding:5px;
+}
+
+.Input label {
+    width: 30%;
+}
+
+.Input input{
+    width: 60%;
+}
+
+.FormControls{
+    padding:10px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.Button{
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+@media(min-width: 700px){
+    .AuthForm{
+        width: 50%;
+        height:40vh;
+    }
+}
