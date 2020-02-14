@@ -1,7 +1,11 @@
-import React from react;
+import React from 'react';
 
-const Error = (props) => (
-    <div>Some error Occured!!</div>
+import classes from  './Error.module.css';
+
+const ErrorMessage = ({ error }) => (
+  <div className={classes.ErrorMessage}>
+    <small>{error.toString()}</small>
+  </div>
 );
 
-export default Error;
+export default ErrorMessage;

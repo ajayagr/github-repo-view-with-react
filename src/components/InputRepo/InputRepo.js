@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/actionTypes';
 import classes from './InputRepo.module.css';
 import * as routes from '../../routes/routes';
 
@@ -10,6 +12,8 @@ class InputRepo extends Component{
 
     formSubmitHandler = (event) => {
         event.preventDefault();
+        this.setRepoOwner(this.state.repoOwner);
+        this.setRepoName(this.state.repoName);
         this.props.history.push(routes.REPOSITORY);
         // this.props.setAuthToken(this.state.newToken);
     }
@@ -50,4 +54,11 @@ class InputRepo extends Component{
     }
 }
 
-export default InputRepo;
+const mapDispatchToProps = dispatch => {
+    return{
+        setRepoOwner: (val) => dispatch({type: actions.SET_REPO_OWNER, owner:val}),
+        setRepoName: (val) => dispatch({type:actions.SET_REPO_NAME, name: val})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(InputRepo);

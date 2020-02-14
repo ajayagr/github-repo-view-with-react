@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 import Main from './containers/Main/Main';
 
@@ -14,14 +15,13 @@ const GITHUB_BASE_URL = 'https://api.github.com/graphql';
 
 class App extends Component {
   render(){
+    // console.log("App rerendering");
     /*Setup Apollo client
       done in render as we want new token code as input*/
     const httpLink = new HttpLink({
       uri: GITHUB_BASE_URL,
       headers: {
-        authorization: `Bearer ${
-            this.props.authToken
-        }`,
+        authorization: `Bearer ${this.props.authTokenConstant}`,
       },
     });
   
@@ -48,10 +48,13 @@ class App extends Component {
     });
     
     console.log(this.props.authToken);
+    
     return (
       <div className="App">
         <ApolloProvider client={client}>
-          <Main />
+          <BrowserRouter>
+            <Main />
+          </BrowserRouter>
         </ApolloProvider>
       </div>
     );
@@ -60,7 +63,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return{
+    authTokenConstant: state.oAuthTokenConstant,
     authToken: state.oAuthToken
+    // isAuthTokenValid: state.isAuthTokenValid
   }
 }
 

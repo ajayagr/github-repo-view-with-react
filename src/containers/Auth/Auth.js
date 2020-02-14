@@ -1,21 +1,37 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import gql from 'graphql-tag';
-import {Query} from 'react-apollo';
+import * as queries from '../../graphql/queries';
+// import gql from 'graphql-tag';
+import {withApollo} from 'react-apollo';
 
 import * as actions from '../../store/actions/actionTypes';
+import * as routes from '../../routes/routes';
 
 import classes from "./Auth.module.css";
 
 class Auth extends Component {
     state={
         newToken: this.props.authToken,
-        isAuthValid: false
+        isAuthValid: false,
+        errMessage: null
     }
 
+    /*Checking if token is valid and redirecting to repo detail page*/
     checkAuthValidity = () => {
-        return true;
+        this.props.client.query({
+            query: queries.getViewerInfo
+        }).then(response => {
+            console.log(response);
+            this.setState({isAuthValid: true});
+            this.props.setAuthValid();
+            alert(`Welcome ${response.data.viewer.name}`);
+            this.props.history.push(routes.ENTER_REPO);
+        }).catch(err => {
+            console.log(err.message);
+            this.setState({errMessage: err.message});
+            return false;
+        });
     }
 
     componentDidMount(){
@@ -30,11 +46,7 @@ class Auth extends Component {
         event.preventDefault();
         this.props.setAuthToken(this.state.newToken);
 
-        if(this.checkAuthValidity){
-            this.props.setAuthValid();
-            this.setState({isAuthValid: true});
-            this.props.history.push("/enter_repo");
-        }
+        this.checkAuthValidity();
     }
 
     formResetHandler = (event) => {
@@ -49,6 +61,7 @@ class Auth extends Component {
         return (
             <div className = {classes.FormContainer}>
                 <h3><label htmlFor="authTokenInput">Enter your Github OAuth Token</label></h3>
+                <span style={{color:'red'}}>{this.state.errMessage}</span>
                 <form className={classes.FormBody} onSubmit={this.formSubmitHandler} onReset={this.formResetHandler}>
                     <div className={classes.Input}>
                         <label htmlFor="authTokenInput">Enter token: </label>
@@ -80,4 +93,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Auth);
+export default connect(mapStateToProps,mapDispatchToProps)(withApollo(Auth));
