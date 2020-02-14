@@ -13,9 +13,9 @@ import { ApolloProvider } from '../node_modules/react-apollo';
 const GITHUB_BASE_URL = 'https://api.github.com/graphql';
 
 class App extends Component {
-  
-  
   render(){
+    /*Setup Apollo client
+      done in render as we want new token code as input*/
     const httpLink = new HttpLink({
       uri: GITHUB_BASE_URL,
       headers: {

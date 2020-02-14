@@ -1,4 +1,4 @@
-.FormContainer {
+.Form {
     display: flex;
     flex-flow: column; 
     margin: auto;
@@ -9,11 +9,11 @@
     box-sizing: border-box;
 }
 
-.FormBody{
+.Form body{
     margin-top: 5vh;
 }
 
-.Input{
+.Form input{
     display: flex;
     flex-flow: row;
     padding:5px;
@@ -40,7 +40,7 @@
 }
 
 @media(min-width: 700px){
-    .FormContainer{
-        width: 60%;
+    .AuthForm{
+        width: 50%;
     }
 }

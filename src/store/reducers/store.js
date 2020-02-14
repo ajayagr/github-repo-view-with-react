@@ -10,7 +10,11 @@ const initialState = {
 const reducer = (state=initialState, action) => {
     switch(action.type){
         case(actions.SET_AUTH_TOKEN):
-            return ({oAuthToken: action.token});
+            return ({...state, oAuthToken: action.token});
+        case(actions.CONFIRM_AUTH_VALIDITY):
+            return({...state, isAuthTokenValid: true});
+        case(actions.REJECT_AUTH_VALIDITY):
+            return({...state, isAuthTokenValid: false});
         default:    
             return state;
     }

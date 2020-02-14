@@ -7,7 +7,7 @@ const Footer = () => (
     <div>
       <small>
         <span className={classes.FooterText}>Built by  
-          <span className={classes.Name}> Ajay Kumar Agarwal</span>
+          <span className={classes.Name}> Ajay Agarwal</span>
         </span>
       </small>
     </div>

@@ -1,2 +1,4 @@
-export const ORGANIZATION = '/';
-export const PROFILE = '/profile';
+export const AUTH = '/auth';
+export const ENTER_REPO = '/enter_repo';
+export const HOME = '/';
+export const REPOSITORY="/repository";

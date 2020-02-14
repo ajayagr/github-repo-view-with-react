@@ -1,25 +1,22 @@
 .Main {
-    display:flex;
-    flex-flow: column;
-    margin-top: 150px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     width: 100vw;
-    height: 100%;
     overflow:auto;
 }
 
-.Main .Header{
-    height:10%;
-}
-
 .Main .Content{
-    height: 80%;
+    margin-top: 150px;
+    flex-grow: 1
 }
 
-.Main .Footer{
-    height: 10%;
+.Header, .Content, .Footer {
+    flex-shrink: 0;
 }
 @media(min-width:500px){
-    .Main{
+    .Main .Content{
         margin-top: 100px;
     }
 }
