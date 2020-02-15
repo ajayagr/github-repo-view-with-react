@@ -3,30 +3,31 @@ import { useQuery } from '@apollo/react-hooks';
 import {withRouter, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {cloneDeep} from 'lodash';
-import * as queries from './../../../graphql/queries';
-import ErrorMessage from '../../Error/Error';
-import Loading from '../../Loading/Loading';
 
-import IssueList from '../Issues/IssueList/IssueList';
+import * as GQL from '../../../../graphql/queries';
+import ErrorMessage from '../../../Error/Error';
+import Loading from '../../../Loading/Loading';
+import IssueList from '../IssueList/IssueList';
 
+const OpenIssues = props => {
+    console.log(`[OpenIssues]`, props);
+    const query = GQL.getIssues[props.issueType];
 
-const PullRequests = props => {
-    console.log(`[PullRequests]`, props);
-    const query = queries.getPullRequests;
-    
-    const {loading, error, data, fetchMore} = useQuery(query,
+    console.log(query);
+
+    const {loading, error, data, fetchMore} = useQuery(query, 
         {variables:{repoName: props.repoName, repoOwner: props.repoOwner, cursor:null}});
     
     if(!props.isAuthTokenValid) return(<Redirect to="/auth" />);
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
-    const pulls = data.repository.pullRequests;
-    let cursor  = pulls.pageInfo.endCursor ? pulls.pageInfo.endCursor  : null;
-    console.log(pulls);
+    const issues = data.repository.issues;
+    let cursor  = issues.pageInfo.endCursor ? issues.pageInfo.endCursor  : null;
+    console.log(issues);
 
     return (
         <IssueList 
-            issues={pulls.edges} 
+            issues={issues.edges} 
             onLoadMore= {() => 
                 fetchMore({
                     query:query,
@@ -36,13 +37,13 @@ const PullRequests = props => {
                         // console.log(fetchMoreResult);
                         //Merging newresult with the old result
                         const newResult = cloneDeep(fetchMoreResult);
-                        const previousRequests = previousResult.repository.pullRequests;
-                        const newRequests = fetchMoreResult.repository.pullRequests;
-                        // const newPageInfo = fetchMoreResult.repository.issues.pageInfo;
+                        const previousIssues = previousResult.repository.issues;
+                        const newIssues = fetchMoreResult.repository.issues;
+                        const newPageInfo = fetchMoreResult.repository.issues.pageInfo;
 
                         // console.log(newResult);
-                        newResult.repository.pullRequests.pageInfo = newRequests.pageInfo;
-                        newResult.repository.pullRequests.edges = [...previousRequests.edges, ...newRequests.edges];
+                        newResult.repository.issues.pageInfo = newPageInfo;
+                        newResult.repository.issues.edges = [...previousIssues.edges, ...newIssues.edges];
 
                         // console.log(newResult);
                         return newResult;
@@ -61,4 +62,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(withRouter(PullRequests));
+export default connect(mapStateToProps)(withRouter(OpenIssues));

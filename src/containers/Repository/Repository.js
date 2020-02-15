@@ -5,7 +5,7 @@ import * as queries from '../../graphql/queries';
 
 import Loading from '../../components/UI/Utility/Spinner/Spinner';
 import PullRequests from '../../components/Repository/PullRequests/PullRequests';
-import {OpenIssues, ClosedIssues} from '../../components/Repository/Issues/Issues';
+import ShowIssues from '../../components/Repository/Issues/ShowIssues/ShowIssues';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -54,10 +54,10 @@ function GetRepoInfo(props){
                         <PullRequests repoName={"react-tabs"} repoOwner={"reactjs"}/>
                     </TabPanel>
                     <TabPanel>
-                        <OpenIssues repoName={"react-tabs"} repoOwner={"reactjs"}/>
+                        <ShowIssues repoName={"react-tabs"} repoOwner={"reactjs"} issueType="OPEN"/>
                     </TabPanel>
                     <TabPanel>
-                        <ClosedIssues repoName={"react-tabs"} repoOwner={"reactjs"}/>
+                        <ShowIssues repoName={"react-tabs"} repoOwner={"reactjs"} issueType="CLOSED"/>
                     </TabPanel>
                 </div>
                 </Tabs>

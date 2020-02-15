@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Issue.module.css';
-import * as Utility from '../../../UI/Utility/Utility';
+import * as Utility from '../../../../UI/Utility/Utility';
 
 const Issue = props => {
     // console.log(props);

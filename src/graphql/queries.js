@@ -46,16 +46,17 @@ export const getRepositoryInfo = gql`
     }
 `
 
-export const getOpenIssues = gql`
-    query OpenIssues($repoName: String!, $repoOwner: String!, $issueCursor: String, $commentCursor: String){
+const getOpenIssues = gql`
+    query OpenIssues($repoName: String!, $repoOwner: String!, $cursor: String){
         repository(name:$repoName owner:$repoOwner){
-            openIssues: issues(first:${RESULT_COUNT} states:OPEN after:$issueCursor orderBy:{
+            issues(first:${RESULT_COUNT} states:OPEN after:$cursor orderBy:{
             field:CREATED_AT
             direction: DESC
             }){
                 pageInfo {
                     endCursor
                     startCursor
+                    hasNextPage
                 }
                 edges{
                     cursor,
@@ -68,18 +69,8 @@ export const getOpenIssues = gql`
                         author{
                             login
                         }
-                        comments(first:${RESULT_COUNT} after:$commentCursor){
-                            totalCount,
-                            edges{
-                                cursor
-                                node{
-                                    createdAt,
-                                    bodyHTML,
-                                    author{
-                                    login
-                                    }
-                                }
-                            }
+                        comments(first:1){
+                            totalCount
                         }
                     }
                 }
@@ -88,14 +79,15 @@ export const getOpenIssues = gql`
     }
 `
 
-export const getClosedIssues = gql`
-query OpenIssues($repoName: String!, $repoOwner: String!, $issueCursor: String, $commentCursor: String){
+const getClosedIssues = gql`
+query OpenIssues($repoName: String!, $repoOwner: String!, $cursor: String){
     repository(name:$repoName owner:$repoOwner){
-        closedIssues: issues(first:${RESULT_COUNT} states:CLOSED after:$issueCursor orderBy:{
+        issues(first:${RESULT_COUNT} states:CLOSED after:$cursor orderBy:{
         field:CREATED_AT
         direction: DESC
         }){
             pageInfo {
+                hasNextPage
                 endCursor
                 startCursor
             }
@@ -110,18 +102,8 @@ query OpenIssues($repoName: String!, $repoOwner: String!, $issueCursor: String, 
                     author{
                         login
                     }
-                    comments(first:${RESULT_COUNT} after:$commentCursor){
+                    comments(first:1){
                         totalCount
-                        edges{
-                            cursor
-                            node{
-                                createdAt,
-                                bodyHTML,
-                                author{
-                                login
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -131,14 +113,15 @@ query OpenIssues($repoName: String!, $repoOwner: String!, $issueCursor: String, 
 `
 
 export const getPullRequests = gql`
-query PullRequests($repoName: String!, $repoOwner: String!, $pullRequesCursor: String, $commentCursor: String){
+query PullRequests($repoName: String!, $repoOwner: String!, $cursor: String){
     repository(name:$repoName owner:$repoOwner){
-        pullRequests: pullRequests(first:${RESULT_COUNT} after:$pullRequesCursor orderBy:{
+        pullRequests: pullRequests(first:${RESULT_COUNT} after:$cursor orderBy:{
         field:CREATED_AT
         direction: DESC
         }){
             pageInfo {
                 endCursor
+                hasNextPage
                 startCursor
             }
             edges{
@@ -152,18 +135,8 @@ query PullRequests($repoName: String!, $repoOwner: String!, $pullRequesCursor: S
                     author{
                         login
                     }
-                    comments(first:${RESULT_COUNT} after:$commentCursor){
-                        totalCount,
-                        edges{
-                            cursor,
-                            node{
-                                createdAt,
-                                bodyHTML,
-                                author{
-                                login
-                                }
-                            }
-                        }
+                    comments(first:1){
+                        totalCount
                     }
                 }
             }
@@ -171,5 +144,10 @@ query PullRequests($repoName: String!, $repoOwner: String!, $pullRequesCursor: S
     }
 }
 `
+
+export const getIssues  = {
+    OPEN: getOpenIssues,
+    CLOSED: getClosedIssues
+};
 
 
