@@ -20,8 +20,8 @@ const ClosedIssues = props => {
     const issues = data.repository.closedIssues;
     console.log(issues);
     
-    const issueList = issues.nodes.map((issue) => {
-        return <Issue issue={issue} key={issue.id} />
+    const issueList = issues.edges.map((issue) => {
+        return <Issue issue={issue.node} key={issue.cursor} />
     });
 
     return (

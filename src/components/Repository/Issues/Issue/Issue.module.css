@@ -1,6 +1,6 @@
 .Issue{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow: 1;
     padding: 16px;
     margin-top: -1px;
@@ -9,4 +9,39 @@
     box-sizing: border-box;
     justify-content: flex-start;
     text-align: left;
+}
+
+.IssueInfo{
+    flex-flow: column;
+    width: 70%;
+    padding-right:10px;
+}
+
+.FillSpace{
+    width:10%;
+}
+.CommentInfo{
+    justify-content: flex-end
+}
+
+.Title{
+    flex-wrap: wrap;
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+
+.Detail{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.Comment{
+    box-sizing: border-box;
+}
+.Comment:hover{
+    fill: aqua;
+}
+.CommentCount{
+    font-weight: 600;
+    font-size: 12px
 }

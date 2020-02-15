@@ -20,8 +20,8 @@ const PullRequests = props => {
     const pulls = data.repository.pullRequests;
     console.log(pulls);
     
-    const pullRequestList = pulls.nodes.map((pullReq) => {
-        return <Issue issue={pullReq} key={pullReq.id} />
+    const pullRequestList = pulls.edges.map((pullReq) => {
+        return <Issue issue={pullReq.node} key={pullReq.cursor} />
     });
 
     return (

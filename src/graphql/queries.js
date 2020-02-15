@@ -57,25 +57,34 @@ export const getOpenIssues = gql`
                     endCursor
                     startCursor
                 }
-                nodes {
-                    id,
-                    number,
-                    title,
-                    createdAt,
-                    author{
-                        login
-                    }
-                    comments(first:${RESULT_COUNT} after:$commentCursor){
-                    nodes{
+                edges{
+                    cursor,
+                    node {
+                        id,
+                        state,
+                        number,
+                        title,
                         createdAt,
-                        bodyHTML,
                         author{
-                        login
+                            login
+                        }
+                        comments(first:${RESULT_COUNT} after:$commentCursor){
+                            totalCount,
+                            edges{
+                                cursor
+                                node{
+                                    createdAt,
+                                    bodyHTML,
+                                    author{
+                                    login
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-        }}
+        }
     }
 `
 
@@ -90,25 +99,34 @@ query OpenIssues($repoName: String!, $repoOwner: String!, $issueCursor: String, 
                 endCursor
                 startCursor
             }
-            nodes {
-                id,
-                number,
-                title,
-                createdAt,
-                author{
-                    login
-                }
-                comments(first:${RESULT_COUNT} after:$commentCursor){
-                nodes{
+            edges{
+                cursor,
+                node {
+                    id,
+                    state,
+                    number,
+                    title,
                     createdAt,
-                    bodyHTML,
                     author{
-                    login
+                        login
+                    }
+                    comments(first:${RESULT_COUNT} after:$commentCursor){
+                        totalCount
+                        edges{
+                            cursor
+                            node{
+                                createdAt,
+                                bodyHTML,
+                                author{
+                                login
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-    }}
+    }
 }
 `
 
@@ -123,26 +141,34 @@ query PullRequests($repoName: String!, $repoOwner: String!, $pullRequesCursor: S
                 endCursor
                 startCursor
             }
-            nodes {
-                id,
-                state,
-                number,
-                title,
-                createdAt,
-                author{
-                    login
-                }
-                comments(first:${RESULT_COUNT} after:$commentCursor){
-                nodes{
+            edges{
+                cursor,
+                node {
+                    id,
+                    state,
+                    number,
+                    title,
                     createdAt,
-                    bodyHTML,
                     author{
-                    login
+                        login
+                    }
+                    comments(first:${RESULT_COUNT} after:$commentCursor){
+                        totalCount,
+                        edges{
+                            cursor,
+                            node{
+                                createdAt,
+                                bodyHTML,
+                                author{
+                                login
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-    }}
+    }
 }
 `
 
