@@ -4,18 +4,16 @@ import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 import Main from './containers/Main/Main';
 
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
+
+import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from 'apollo-boost';
+// import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from '../node_modules/react-apollo';
+import { ApolloProvider } from 'react-apollo';
 
 const GITHUB_BASE_URL = 'https://api.github.com/graphql';
 
 class App extends Component {
   render(){
-    // console.log("App rerendering");
     /*Setup Apollo client
       done in render as we want new token code as input*/
     const httpLink = new HttpLink({

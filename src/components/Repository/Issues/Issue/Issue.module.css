@@ -1,0 +1,12 @@
+.Issue{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 16px;
+    margin-top: -1px;
+    list-style-type: none;
+    border-top: 1px solid #e1e4e8;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    text-align: left;
+}

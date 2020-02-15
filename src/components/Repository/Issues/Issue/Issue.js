@@ -1,8 +1,12 @@
 import React from 'react';
+import classes from './Issue.module.css';
 
 const Issue = props => {
+    // console.log(props);
     return(
-        <div key={Math.random()*100}>Issues</div>
+        <div className={classes.Issue}>
+            <div className={classes.title}>{props.issue.title}</div>
+        </div>
     )
 }
 

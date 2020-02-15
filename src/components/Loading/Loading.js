@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Spinner from '../UI/Utility/Spinner/Spinner';
 import classes from './Loading.module.css';
 
 const TICK_RATE = 500;
@@ -23,7 +23,6 @@ class Loading extends Component {
 
   render() {
     const { isCenter } = this.props;
-    const { dots } = this.state;
 
     const classNames = [classes.Loading];
 
@@ -33,9 +32,7 @@ class Loading extends Component {
 
     return (
       <div className={classNames.join(' ')}>
-        <small>
-          Loading {new Array(dots).fill(0).map(dot => '.')}
-        </small>
+        <Spinner />
       </div>
     );
   }

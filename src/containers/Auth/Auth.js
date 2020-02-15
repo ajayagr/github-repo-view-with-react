@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as queries from '../../graphql/queries';
-// import gql from 'graphql-tag';
 import {withApollo} from 'react-apollo';
 
+import Spinner from '../../components/UI/Utility/Spinner/Spinner';
+import * as queries from '../../graphql/queries';
 import * as actions from '../../store/actions/actionTypes';
 import * as routes from '../../routes/routes';
 
@@ -14,22 +13,25 @@ class Auth extends Component {
     state={
         newToken: this.props.authToken,
         isAuthValid: false,
-        errMessage: null
+        errMessage: null,
+        isLoading: false
     }
 
     /*Checking if token is valid and redirecting to repo detail page*/
     checkAuthValidity = () => {
+        this.setState({isLoading:true});
+        // console.log('');
         this.props.client.query({
             query: queries.getViewerInfo
         }).then(response => {
             console.log(response);
-            this.setState({isAuthValid: true});
+            this.setState({isAuthValid: true, isLoading:false});
             this.props.setAuthValid();
             alert(`Welcome ${response.data.viewer.name}`);
             this.props.history.push(routes.ENTER_REPO);
         }).catch(err => {
-            console.log(err.message);
-            this.setState({errMessage: err.message});
+            console.log({err});
+            this.setState({errMessage: err.message, isLoading:false});
             return false;
         });
     }
@@ -55,8 +57,8 @@ class Auth extends Component {
     }
 
     render(){
-        if(this.state.isAuthValid){
-            return(<Redirect to="/" />);
+        if(this.state.isLoading){
+            return <Spinner />
         }
         return (
             <div className = {classes.FormContainer}>

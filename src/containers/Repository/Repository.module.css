@@ -10,20 +10,29 @@
 
 .RepoHeader{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     width: 80vw
 }
 
 .RepoGeneralInfo{
     display: flex;
-    flex-direction: row;
-    width:100%
+    flex-direction: column;
+    text-align: left;
+    width:60%
 }
 
 .RepoTitle{
+    text-align: left;
     width:60%;
     float: left;
+}
+
+.RepoProjectDetails{
+    text-align: left;
+    flex-flow: column;
+    width:40%;
+    flex-wrap: wrap;
 }
 .RepoDetails{
     display: flex;
@@ -32,6 +41,7 @@
     width: 40%;
     margin: auto;
     align-items: baseline;
+    text-align: left;
 }
 
 .RepoDetailItem{
@@ -41,6 +51,14 @@
 .RepoTabs{
     margin-top:3vh;
     width:100%;
+}
+
+.RepoTabContent{
+    border: 1px solid #dfe2e5;
+    border-top: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    box-sizing: border-box;
 }
 
 @media(max-width:600px){

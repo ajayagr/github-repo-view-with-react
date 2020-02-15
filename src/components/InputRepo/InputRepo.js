@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/actionTypes';
 import classes from './InputRepo.module.css';
@@ -6,14 +7,14 @@ import * as routes from '../../routes/routes';
 
 class InputRepo extends Component{
     state = {
-        repoOwner: "",
-        repoName: ""
+        repoOwner: this.props.repoOwner,
+        repoName: this.props.repoName
     }
 
     formSubmitHandler = (event) => {
         event.preventDefault();
-        this.setRepoOwner(this.state.repoOwner);
-        this.setRepoName(this.state.repoName);
+        this.props.setRepoOwner(this.state.repoOwner);
+        this.props.setRepoName(this.state.repoName);
         this.props.history.push(routes.REPOSITORY);
         // this.props.setAuthToken(this.state.newToken);
     }
@@ -32,6 +33,10 @@ class InputRepo extends Component{
     }
 
     render(){
+        if(!this.props.isAuthTokenValid){
+            console.log("[InputRepo] auth not valid!!");
+            return <Redirect to="/" />
+        }
         return(
         <div className = {classes.FormContainer}>
             <label htmlFor="repoOwner"><h3>Enter details of Repo</h3></label>
@@ -54,6 +59,14 @@ class InputRepo extends Component{
     }
 }
 
+const mapStateToProps = state => {
+    return{
+        isAuthTokenValid: state.isAuthTokenValid,
+        repoName: state.repoName,
+        repoOwner: state.repoOwner
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return{
         setRepoOwner: (val) => dispatch({type: actions.SET_REPO_OWNER, owner:val}),
@@ -61,4 +74,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(InputRepo);
+export default connect(mapStateToProps, mapDispatchToProps)(InputRepo);
