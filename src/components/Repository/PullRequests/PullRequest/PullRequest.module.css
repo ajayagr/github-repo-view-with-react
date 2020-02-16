@@ -1,0 +1,53 @@
+.PullRequest{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 16px;
+    margin-top: -1px;
+    list-style-type: none;
+    border-top: 1px solid #e1e4e8;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    text-align: left;
+    color: black;
+}
+
+.PullRequest :hover{
+    color: blue;
+}
+
+.PullRequestInfo{
+    flex-flow: column;
+    width: 70%;
+    padding-right:10px;
+}
+
+.FillSpace{
+    width:10%;
+}
+.CommentInfo{
+    text-decoration: none;
+}
+
+.Title{
+    flex-wrap: wrap;
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+
+.Detail{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.Comment{
+    box-sizing: border-box;
+}
+.Comment:hover{
+    fill: aqua;
+}
+.CommentCount{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px
+}

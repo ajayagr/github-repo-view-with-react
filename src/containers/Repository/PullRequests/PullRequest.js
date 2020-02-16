@@ -3,11 +3,12 @@ import { useQuery } from '@apollo/react-hooks';
 import {withRouter, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {cloneDeep} from 'lodash';
-import * as queries from './../../../graphql/queries';
-import ErrorMessage from '../../Error/Error';
-import Loading from '../../Loading/Loading';
 
-import IssueList from '../Issues/IssueList/IssueList';
+import * as queries from '../../../graphql/queries';
+import ErrorMessage from '../../../components/Error/Error';
+import Loading from '../../../components/Loading/Loading';
+
+import PullRequestList from '../../../components/Repository/PullRequests/PullRequestList/PullRequestList';
 
 
 const PullRequests = props => {
@@ -25,7 +26,7 @@ const PullRequests = props => {
     console.log(pulls);
 
     return (
-        <IssueList 
+        <PullRequestList 
             hasMore = {pulls.pageInfo.hasNextPage}
             issues={pulls.edges} 
             onLoadMore= {() => 

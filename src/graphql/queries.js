@@ -66,6 +66,7 @@ const getOpenIssues = gql`
                         number,
                         title,
                         createdAt,
+                        closedAt
                         author{
                             login
                         }
@@ -99,6 +100,7 @@ query OpenIssues($repoName: String!, $repoOwner: String!, $cursor: String){
                     number,
                     title,
                     createdAt,
+                    closedAt,
                     author{
                         login
                     }
@@ -132,6 +134,8 @@ query PullRequests($repoName: String!, $repoOwner: String!, $cursor: String){
                     number,
                     title,
                     createdAt,
+                    mergedAt,
+                    closedAt,
                     author{
                         login
                     }

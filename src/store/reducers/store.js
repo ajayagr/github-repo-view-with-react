@@ -3,11 +3,10 @@ import * as actions from '../actions/actionTypes';
 //Graphql auth
 
 const initialState = {
-    oAuthTokenConstant: process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
-    oAuthToken: "1234",
+    oAuthToken: "",
     isAuthTokenValid: false,
     repoOwner:"reactjs",
-    repoName:"react-tabs"
+    repoName:"react-tabs",
 }
 
 const reducer = (state=initialState, action) => {

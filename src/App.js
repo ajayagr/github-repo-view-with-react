@@ -19,7 +19,7 @@ class App extends Component {
     const httpLink = new HttpLink({
       uri: GITHUB_BASE_URL,
       headers: {
-        authorization: `Bearer ${this.props.authTokenConstant}`,
+        authorization: `Bearer ${this.props.authToken}`,
       },
     });
   
@@ -45,7 +45,7 @@ class App extends Component {
       cache,
     });
     
-    console.log(this.props.authToken);
+    // console.log(this.props.authToken);
     
     return (
       <div className="App">
@@ -61,9 +61,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return{
-    authTokenConstant: state.oAuthTokenConstant,
     authToken: state.oAuthToken
-    // isAuthTokenValid: state.isAuthTokenValid
   }
 }
 

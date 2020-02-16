@@ -19,7 +19,7 @@ class Auth extends Component {
 
     /*Checking if token is valid and redirecting to repo detail page*/
     checkAuthValidity = () => {
-        this.setState({isLoading:true});
+        // this.setState({isLoading:true});
         // console.log('');
         this.props.client.query({
             query: queries.getViewerInfo
@@ -31,7 +31,11 @@ class Auth extends Component {
             this.props.history.push(routes.ENTER_REPO);
         }).catch(err => {
             console.log({err});
-            this.setState({errMessage: err.message, isLoading:false});
+            let errMsg = err.message;
+            if(err.networkError.statusCode === 401){
+                errMsg = "Invalid Token!! Please enter correct oAuth token!"
+            }
+            this.setState({errMessage: errMsg, isLoading:false});
             return false;
         });
     }
@@ -47,8 +51,8 @@ class Auth extends Component {
     formSubmitHandler = (event) => {
         event.preventDefault();
         this.props.setAuthToken(this.state.newToken);
-
-        this.checkAuthValidity();
+        this.setState({isLoading: true});
+        setTimeout(this.checkAuthValidity, 1000);
     }
 
     formResetHandler = (event) => {

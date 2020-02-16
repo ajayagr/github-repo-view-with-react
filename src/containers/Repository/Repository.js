@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 import * as queries from '../../graphql/queries';
 
 import Loading from '../../components/UI/Utility/Spinner/Spinner';
-import PullRequests from '../../components/Repository/PullRequests/PullRequests';
+import PullRequests from './PullRequests/PullRequest';
 import ShowIssues from '../../components/Repository/Issues/ShowIssues/ShowIssues';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';

@@ -1,33 +1,36 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import classes from './Issue.module.css';
+import classes from './PullRequest.module.css';
 
-import * as Utility from '../../../../UI/Utility/Utility';
+import * as Utility from '../../../UI/Utility/Utility';
 
-const Issue = props => {
+const PullRequest = props => {
     // console.log(props);
-    let issueState = "";
-    let dateOptions = {month:'long', day:'numeric'}
-    let shortDate = null
+    let pullState = "";
+    let dateOptions = {month:'long', day:'numeric'};
+    let shortDate = null;
     if(props.issue.state === "OPEN"){
-        issueState="opened"
+        pullState="opened"
         shortDate = new Date(props.issue.createdAt).toLocaleDateString("en-US", dateOptions);
     }
+    if(props.issue.state === "MERGED"){
+        pullState="merged"
+        shortDate = new Date(props.issue.mergedAt).toLocaleDateString("en-US", dateOptions);
+    }
     if(props.issue.state === "CLOSED"){
-        issueState="closed"
+        pullState="closed"
         shortDate = new Date(props.issue.closedAt).toLocaleDateString("en-US", dateOptions);
     }
 
-    const issueDetail = `# ${props.issue.number} ${issueState} on ${shortDate} by ${props.issue.author.login}`;
+    const pullRequestDetail = `# ${props.issue.number} ${pullState} on ${shortDate} by ${props.issue.author.login}`;
 
-    const link= `/repository/${props.repoOwner}/${props.repoName}/issues/${props.issue.number}`
+    const link= `https://github.com/${props.repoOwner}/${props.repoName}/pull/${props.issue.number}`
     return(
-        <Link to={link} >
-            <div className={classes.Issue}>
-                <div className={classes.IssueInfo}>
+        <a href={link} target="__blank">
+            <div className={classes.PullRequest}>
+                <div className={classes.PullRequestInfo}>
                     <div className={classes.Title}><span>{props.issue.title}</span></div>
-                    <div className={classes.Detail}><span>{issueDetail}</span></div>
+                    <div className={classes.Detail}><span>{pullRequestDetail}</span></div>
                 </div>
                 <div className={classes.FillSpace} />
                 <div className={classes.FillSpace} />
@@ -37,7 +40,7 @@ const Issue = props => {
                         </div>
                 </div>
             </div>
-        </Link>
+        </a>
     )
 }
 
@@ -48,4 +51,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Issue);
+export default connect(mapStateToProps)(PullRequest);
