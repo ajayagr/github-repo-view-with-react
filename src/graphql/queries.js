@@ -145,6 +145,42 @@ query PullRequests($repoName: String!, $repoOwner: String!, $cursor: String){
 }
 `
 
+export const getIssueComments = gql`
+query IssueComments($repoName: String!, $repoOwner: String!, $issueNumber: Int!, $cursor: String){
+    repository(name: $repoName, owner: $repoOwner) {
+      issue(number: $issueNumber) {
+        title
+        number
+        author {
+          login
+        }
+        state
+        bodyHTML
+        createdAt
+        comments(first: ${RESULT_COUNT} after: $cursor) {
+          totalCount
+          pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+          }
+          edges {
+            cursor
+            node {
+              createdAt
+              author {
+                login
+                url
+              }
+              bodyHTML
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 export const getIssues  = {
     OPEN: getOpenIssues,
     CLOSED: getClosedIssues

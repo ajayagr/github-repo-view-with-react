@@ -14,7 +14,7 @@ import { useQuery } from '@apollo/react-hooks';
 import ErrorMessage from '../../components/Error/Error';
         
 function GetRepoInfo(props){
-    console.log(props);
+    //Get repository data
     const {loading, error, data} = useQuery(queries.getRepositoryInfo, 
         {variables:{name: props.repoName, owner: props.repoOwner}});
     if (!props.isValidAuthToken) return(<Redirect to="/" />);
@@ -22,6 +22,7 @@ function GetRepoInfo(props){
     if (error) return <ErrorMessage error={error}/>;
     const repo = data.repository;
     console.log(repo);
+
     return(
         <div className={classes.Content}>
             <div className={classes.RepoHeader}>

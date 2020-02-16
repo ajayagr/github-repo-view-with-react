@@ -13,17 +13,21 @@ const OpenIssues = props => {
     console.log(`[OpenIssues]`, props);
     const query = GQL.getIssues[props.issueType];
 
-    console.log(query);
+    // console.log(query);
 
     const {loading, error, data, fetchMore} = useQuery(query, 
-        {variables:{repoName: props.repoName, repoOwner: props.repoOwner, cursor:null}});
+            {
+                variables:{repoName: props.repoName, repoOwner: props.repoOwner, cursor:null},
+                notifyOnNetworkStatusChange: true
+        });
     
     if(!props.isAuthTokenValid) return(<Redirect to="/auth" />);
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
+    console.log(data.repository);
     const issues = data.repository.issues;
     let cursor  = issues.pageInfo.endCursor ? issues.pageInfo.endCursor  : null;
-    console.log(issues);
+    // console.log(issues);
 
     return (
         <IssueList 
