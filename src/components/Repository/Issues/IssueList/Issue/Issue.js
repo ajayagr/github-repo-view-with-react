@@ -9,14 +9,20 @@ const Issue = props => {
     // console.log(props);
     let issueState = "";
     let dateOptions = {month:'long', day:'numeric'}
-    let shortDate = null
+    let shortDate = null;
+    let issueIcon = null;
+    let issueIconClass = [classes.IssueIcon];
     if(props.issue.state === "OPEN"){
         issueState="opened"
         shortDate = new Date(props.issue.createdAt).toLocaleDateString("en-US", dateOptions);
+        issueIcon = Utility.openIssueIcon;
+        issueIconClass.push(classes.Open);
     }
     if(props.issue.state === "CLOSED"){
         issueState="closed"
         shortDate = new Date(props.issue.closedAt).toLocaleDateString("en-US", dateOptions);
+        issueIcon = Utility.closedIssueIcon;
+        issueIconClass.push(classes.Closed);
     }
 
     const issueDetail = `# ${props.issue.number} ${issueState} on ${shortDate} by ${props.issue.author.login}`;
@@ -25,6 +31,9 @@ const Issue = props => {
     return(
         <Link to={link} >
             <div className={classes.Issue}>
+                <div className={issueIconClass.join(' ')}>
+                    {issueIcon}
+                </div>
                 <div className={classes.IssueInfo}>
                     <div className={classes.Title}><span>{props.issue.title}</span></div>
                     <div className={classes.Detail}><span>{issueDetail}</span></div>

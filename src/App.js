@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
+import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from 'apollo-boost';
+import { onError } from 'apollo-link-error';
+import { ApolloProvider } from 'react-apollo';
+
 import './App.css';
 import Main from './containers/Main/Main';
 
-
-import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from 'apollo-boost';
-// import { ApolloLink } from 'apollo-link';
-import { onError } from 'apollo-link-error';
-import { ApolloProvider } from 'react-apollo';
 
 const GITHUB_BASE_URL = 'https://api.github.com/graphql';
 

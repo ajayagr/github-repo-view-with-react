@@ -1,0 +1,25 @@
+.RepoProjectDetails{
+    text-align: left;
+    flex-flow: column;
+    width:40%;
+    flex-wrap: wrap;
+}
+.RepoDetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 40%;
+    margin: auto;
+    align-items: baseline;
+    text-align: left;
+}
+
+.RepoDetailItem{
+    padding-right:10px;
+}
+
+@media(max-width:600px){
+    .RepoDetails{
+        display:none
+    }
+}

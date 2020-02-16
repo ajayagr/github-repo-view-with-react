@@ -1,0 +1,18 @@
+.Container{
+    margin: auto;
+    border: 2px solid black;
+    box-sizing: border-box;
+    width:80vw;
+    height: 60vw;
+    font-size: 30px;
+    position: relative;
+}
+
+.Container p {
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}

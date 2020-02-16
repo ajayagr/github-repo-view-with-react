@@ -1,0 +1,19 @@
+.RepoHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 80vw
+}
+
+.RepoGeneralInfo{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width:60%
+}
+
+.RepoTitle{
+    text-align: left;
+    width:60%;
+    float: left;
+}

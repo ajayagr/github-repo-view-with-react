@@ -12,7 +12,7 @@ const Comment = props => {
             <div className={classes.CommentBodyHeader}>
                 <span className={classes.CommentBodyHeaderText}>{headerText}</span>
             </div>
-            <div>
+            <div className={classes.CommentText}>
                 {ReactHTMLParser(props.comment.bodyHTML)}
             </div>
         </div>

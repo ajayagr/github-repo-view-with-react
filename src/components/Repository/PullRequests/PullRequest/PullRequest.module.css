@@ -51,3 +51,21 @@
     font-weight: 600;
     font-size: 12px
 }
+
+.PullIcon{
+    margin-top:5px;
+    min-width:2vw;
+    padding-right: 8px; 
+}
+
+.Open{
+    fill:green
+}
+
+.Closed{
+    fill: red;
+}
+
+.Merged{
+    fill: #6f42c1;
+}

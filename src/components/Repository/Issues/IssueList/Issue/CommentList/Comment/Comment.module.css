@@ -32,3 +32,8 @@
     box-sizing: border-box;
     color: #586069
 }
+
+.CommentText{
+    padding-left: 10px;
+    padding-right: 10px;
+}

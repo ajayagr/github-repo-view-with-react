@@ -1,0 +1,22 @@
+.RepoTabs{
+    margin-top:3vh;
+    width:100%;
+}
+
+.RepoTabContent{
+    border: 1px solid #dfe2e5;
+    border-top: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    box-sizing: border-box;
+}
+
+.Circle{
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    color: #586069;
+    background-color: rgba(27,31,35,.08);
+    border-radius: 20px;
+}

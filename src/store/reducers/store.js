@@ -1,7 +1,5 @@
 import * as actions from '../actions/actionTypes';
 
-//Graphql auth
-
 const initialState = {
     oAuthToken: "",
     isAuthTokenValid: false,

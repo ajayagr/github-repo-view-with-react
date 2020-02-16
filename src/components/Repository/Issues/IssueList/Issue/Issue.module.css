@@ -43,11 +43,27 @@
 .Comment{
     box-sizing: border-box;
 }
+
 .Comment:hover{
     fill: aqua;
 }
+
 .CommentCount{
     text-decoration: none;
     font-weight: 600;
     font-size: 12px
+}
+
+.IssueIcon{
+    margin-top:5px;
+    min-width:2vw;
+    padding-right: 8px; 
+}
+
+.Open{
+    fill:green
+}
+
+.Closed{
+    fill: red;
 }

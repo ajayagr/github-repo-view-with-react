@@ -12,7 +12,7 @@ const IssueDetail = props => {
             <div className={classes.IssueBodyHeader}>
                 <span className={classes.IssueBodyHeaderText}>{headerText}</span>
             </div>
-            <div>
+            <div className={classes.IssueText}>
                 {ReactHTMLParser(props.issue.bodyHTML)}
             </div>
         </div>

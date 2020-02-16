@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+
 import * as actions from '../../store/actions/actionTypes';
 import classes from './InputRepo.module.css';
 import * as routes from '../../routes/routes';
@@ -16,7 +17,6 @@ class InputRepo extends Component{
         this.props.setRepoOwner(this.state.repoOwner);
         this.props.setRepoName(this.state.repoName);
         this.props.history.push(routes.REPOSITORY);
-        // this.props.setAuthToken(this.state.newToken);
     }
 
     formResetHandler = (event) => {
