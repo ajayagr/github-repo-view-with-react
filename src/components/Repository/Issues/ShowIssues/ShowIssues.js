@@ -17,8 +17,7 @@ const OpenIssues = props => {
 
     const {loading, error, data, fetchMore} = useQuery(query, 
             {
-                variables:{repoName: props.repoName, repoOwner: props.repoOwner, cursor:null},
-                notifyOnNetworkStatusChange: true
+                variables:{repoName: props.repoName, repoOwner: props.repoOwner, cursor:null}
         });
     
     if(!props.isAuthTokenValid) return(<Redirect to="/auth" />);
@@ -31,6 +30,7 @@ const OpenIssues = props => {
 
     return (
         <IssueList 
+            hasMore = {issues.pageInfo.hasNextPage}
             issues={issues.edges} 
             onLoadMore= {() => 
                 fetchMore({

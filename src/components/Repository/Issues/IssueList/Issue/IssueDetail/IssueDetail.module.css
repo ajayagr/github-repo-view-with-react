@@ -7,6 +7,7 @@
     overflow: auto;
     box-sizing: border-box;
     margin-bottom:3vh;
+    min-width: 65vw;
 }
 
 .IssueBodyHeader{

@@ -3,12 +3,18 @@ import Comment from './Comment/Comment';
 
 const Comments = props => {
     const comments = props.comments.map(comment => {
-        return <Comment comment={comment.node} key={comment.cursor} />
+        if(comment.node.bodyText.includes(props.searchComment)) {
+            return <Comment comment={comment.node} key={comment.cursor} />
+        }
+        return null;
     });
+    const loadMore = props.hasMore ? 
+    (<button onClick={props.onLoadMore}>Load More....</button>) :
+    (null)
     return(
         <div>
             {comments}
-            <div onClick={props.onLoadMore}>Load More....</div>
+            {loadMore}
         </div>
     )    
 }

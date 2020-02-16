@@ -10,13 +10,14 @@ const Header = props => {
         state="closed"
     }
 
-    let dateOptions = {month:'long', day:'numeric'}
+    let dateOptions = {month:'long', day:'numeric', year:"2-digit"}
     let shortDate = new Date(props.issue.createdAt).toLocaleDateString("en-US", dateOptions);
     const issueDetail = `# ${props.issue.number} ${state} on ${shortDate} by ${props.issue.author.login}`;
+    const link = `https://github.com/${props.repoOwner}/${props.repoName}/issues/${props.issueNumber}`;
 
     return(
         <div className={classes.IssueInfo}>
-                <div className={classes.Title}><span>{props.issue.title}</span></div>
+                <a href={link} target="__blank" ><div className={classes.Title}><span>{props.issue.title}</span></div></a>
                 <div className={classes.Detail}><span>{issueDetail}</span></div>
         </div>
     )

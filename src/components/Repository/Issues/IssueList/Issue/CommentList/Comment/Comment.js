@@ -4,7 +4,7 @@ import ReactHTMLParser from 'react-html-parser';
 import classes from './Comment.module.css';
 
 const Comment = props => {
-    let dateOptions = {month:'long', day:'numeric'}
+    let dateOptions = {month:'long', day:'numeric', year:"2-digit"}
     let shortDate = new Date(props.comment.createdAt).toLocaleDateString("en-US", dateOptions);
     const headerText = `${props.comment.author.login} commented on ${shortDate}`;
     return(

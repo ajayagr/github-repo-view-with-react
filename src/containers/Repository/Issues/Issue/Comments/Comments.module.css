@@ -3,3 +3,37 @@
     margin: auto;
     text-align: left;
 }
+
+.Row{
+    display:flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.IssueComments{
+    widows: 70%;
+}
+.IssueDetails{
+    display:none;
+    width:30%;
+}
+
+.IssueTop{
+    display: flex;
+    flex-direction: row;
+}
+
+.SearchComments{
+    margin-top:10px;
+    width:30%;
+    margin-left: 10px;
+}
+
+@media(min-width:768px){
+    .IssueDetails{
+        display: block;
+    }
+    .IssueComments{
+        padding-right: 3vw
+    }
+}

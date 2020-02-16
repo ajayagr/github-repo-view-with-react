@@ -5,10 +5,14 @@ const IssueList = props => {
     const issues = props.issues.map(issue => {
         return <Issue issue={issue.node} key={issue.cursor} />
     });
+    const loadMore = props.hasMore ? 
+    (<button onClick={props.onLoadMore}>Load More....</button>) :
+    (null)
+
     return(
         <div>
             {issues}
-            <div onClick={props.onLoadMore}>Load More....</div>
+            {loadMore}
         </div>
     )
 }

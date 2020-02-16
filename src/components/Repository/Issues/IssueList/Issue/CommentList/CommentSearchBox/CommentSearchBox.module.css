@@ -1,0 +1,19 @@
+.SearchBox{
+    min-height:10vh; 
+    min-width: 8vw;
+    max-width:10vw;
+}
+
+@media(min-width:500px){
+    .SearchBox{
+        max-width: 15vw;
+        min-width: 10vw;
+    }
+}
+@media(min-width:700px){
+    .SearchBox{
+        max-width: 20vw;
+        min-width: 20vw;
+    }
+}
+

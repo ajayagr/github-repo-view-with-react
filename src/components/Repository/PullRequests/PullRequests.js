@@ -26,6 +26,7 @@ const PullRequests = props => {
 
     return (
         <IssueList 
+            hasMore = {pulls.pageInfo.hasNextPage}
             issues={pulls.edges} 
             onLoadMore= {() => 
                 fetchMore({

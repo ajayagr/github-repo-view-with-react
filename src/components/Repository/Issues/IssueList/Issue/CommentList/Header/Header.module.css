@@ -3,6 +3,7 @@
     flex-flow: column;
     width: 100%;
     padding-right:10px;
+    min-height: 10vh;
 }
 
 .Title{
@@ -10,11 +11,17 @@
     font-weight: 400;
     font-size: 26px;
     padding-bottom: 4px;
+    color: black;
 }
 
 .Detail{
     font-size: 16px;
     font-weight: 300;
+}
+
+
+.Title:hover{
+    color:blue;
 }
 
 @media(min-width:768px){

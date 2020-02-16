@@ -157,6 +157,35 @@ query IssueComments($repoName: String!, $repoOwner: String!, $issueNumber: Int!,
         state
         bodyHTML
         createdAt
+        assignees(first:2){
+            totalCount,
+            edges{
+              node{
+                name
+              }
+            }
+          }
+          labels(first:2){
+            totalCount,
+            edges{
+              node{
+                name
+              }
+            }
+          }
+          milestone{
+            title
+          }
+          projectCards(first:2){
+            totalCount,
+            edges{
+              node{
+                project{
+                  name
+                }
+              }
+            }
+          }
         comments(first: ${RESULT_COUNT} after: $cursor) {
           totalCount
           pageInfo {
@@ -173,6 +202,7 @@ query IssueComments($repoName: String!, $repoOwner: String!, $issueNumber: Int!,
                 url
               }
               bodyHTML
+              bodyText
             }
           }
         }
