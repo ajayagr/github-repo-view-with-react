@@ -7,7 +7,6 @@
     overflow: auto;
     box-sizing: border-box;
     margin-bottom:3vh;
-    min-width: 70vw;
 }
 
 .IssueBodyHeader{
@@ -37,4 +36,10 @@
 .IssueText{
     padding-left: 10px;
     padding-right: 10px;
+}
+
+@media(min-width:768px){
+    .IssueBody{
+        max-width: 70vw;
+    }
 }

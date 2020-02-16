@@ -37,3 +37,9 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+@media(min-width:768px){
+    .CommentBody{
+        max-width: 70vw;
+    }
+}

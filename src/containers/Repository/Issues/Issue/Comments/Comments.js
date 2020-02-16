@@ -39,7 +39,7 @@ const Comments = props => {
     if(!props.isAuthTokenValid) return(<Redirect to="/auth" />);
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
-    console.log(data.repository);
+    // console.log(data.repository);
     const issue = data.repository.issue;
     const comments = data.repository.issue.comments;
     let cursor  = comments.pageInfo.endCursor ? comments.pageInfo.endCursor : null;

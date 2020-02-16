@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './IssueAssignmentDetail.module.css';
 
 const issueAssignmentDetail = props => {
-    console.log(props);
+    // console.log(props);
     let assignees,milestone, projects, labels;
     let count = props.issue.assignees.totalCount;
     
