@@ -12,7 +12,7 @@ import PullRequestList from '../../../components/Repository/PullRequests/PullReq
 
 
 const PullRequests = props => {
-    console.log(`[PullRequests]`, props);
+    // console.log(`[PullRequests]`, props);
     const query = queries.getPullRequests;
     
     const {loading, error, data, fetchMore} = useQuery(query,
@@ -23,7 +23,7 @@ const PullRequests = props => {
     if (error) return <ErrorMessage error={error} />;
     const pulls = data.repository.pullRequests;
     let cursor  = pulls.pageInfo.endCursor ? pulls.pageInfo.endCursor  : null;
-    console.log(pulls);
+    // console.log(pulls);
 
     return (
         <PullRequestList 

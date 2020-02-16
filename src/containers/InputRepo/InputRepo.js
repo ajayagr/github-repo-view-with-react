@@ -39,15 +39,17 @@ class InputRepo extends Component{
         }
         return(
         <div className = {classes.FormContainer}>
-            <label htmlFor="repoOwner"><h3>Enter details of Repo</h3></label>
+            <label htmlFor="repoOwner"><h3>Enter details of Repository</h3></label>
             <form className={classes.FormBody} onSubmit={this.formSubmitHandler} onReset={this.formResetHandler}>
                 <div className={classes.Input}>
                     <label htmlFor="repoOwner">Repo Owner: </label>
-                    <input id="repoOwner" type="text" onChange={this.repoOwnerChangeHandler} value = {this.state.repoOwner} />
+                    <input id="repoOwner" type="text" required onChange={this.repoOwnerChangeHandler} value = {this.state.repoOwner}
+                        placeholder="Github username (e.g. 'ajayagr')" />
                 </div>
                 <div className={classes.Input}>
                     <label htmlFor="repoName">Repo Name: </label>
-                    <input id="repoName" type="text" onChange={this.repoNameChangeHandler} value = {this.state.repoName} />
+                    <input id="repoName" type="text" required onChange={this.repoNameChangeHandler} value = {this.state.repoName} 
+                        placeholder="Github username (e.g. 'burger-builder')"/>
                 </div>
                 <div className={classes.FormControls}>
                     <button className={classes.Button} type="submit">Load Repository</button>

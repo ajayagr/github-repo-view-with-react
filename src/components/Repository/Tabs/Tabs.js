@@ -3,12 +3,12 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import PullRequests from '../../../containers/Repository/PullRequests/PullRequest';
-import ShowIssues from '../../Repository/Issues/ShowIssues/ShowIssues';
+import Issues from '../../../containers/Repository/Issues/Issues';
 
 import classes from './Tabs.module.css';
 
 const RepoTabs = props => {
-    console.log(props);
+    // console.log(props);
     const repo =props.repository;
     return(
         <div className={classes.RepoTabs}>
@@ -24,10 +24,10 @@ const RepoTabs = props => {
                         <PullRequests repoName={"react-tabs"} repoOwner={"reactjs"}/>
                     </TabPanel>
                     <TabPanel>
-                        <ShowIssues repoName={"react-tabs"} repoOwner={"reactjs"} issueType="OPEN"/>
+                        <Issues repoName={"react-tabs"} repoOwner={"reactjs"} issueType="OPEN"/>
                     </TabPanel>
                     <TabPanel>
-                        <ShowIssues repoName={"react-tabs"} repoOwner={"reactjs"} issueType="CLOSED"/>
+                        <Issues repoName={"react-tabs"} repoOwner={"reactjs"} issueType="CLOSED"/>
                     </TabPanel>
                 </div>
             </Tabs>

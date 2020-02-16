@@ -27,7 +27,9 @@ const Issue = props => {
 
     const issueDetail = `# ${props.issue.number} ${issueState} on ${shortDate} by ${props.issue.author.login}`;
 
-    const link= `/repository/${props.repoOwner}/${props.repoName}/issues/${props.issue.number}`
+    //Link to comment
+    const link= `/repository/${props.repoOwner}/${props.repoName}/issues/${props.issue.number}`;
+
     return(
         <Link to={link} >
             <div className={classes.Issue}>

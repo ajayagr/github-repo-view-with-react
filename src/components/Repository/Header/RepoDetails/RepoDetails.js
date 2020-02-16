@@ -19,6 +19,7 @@ const RepoDetails = props => {
                 <div className={classes.RepoDetailItem}><button>{stargazersIcon} {repo.stargazers.totalCount}</button></div>
             </div>
             <div>Language: {repo.primaryLanguage.name}</div>
+            
         </div>
     );
 }

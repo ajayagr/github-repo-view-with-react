@@ -24,7 +24,7 @@ class Auth extends Component {
         this.props.client.query({
             query: queries.getViewerInfo
         }).then(response => {
-            console.log(response);
+            // console.log(response);
             this.setState({isAuthValid: true, isLoading:false});
             this.props.setAuthValid();
             alert(`Welcome ${response.data.viewer.name}`);
@@ -71,7 +71,8 @@ class Auth extends Component {
                 <form className={classes.FormBody} onSubmit={this.formSubmitHandler} onReset={this.formResetHandler}>
                     <div className={classes.Input}>
                         <label htmlFor="authTokenInput">Enter token: </label>
-                        <input id="authTokenInput" type="text" onChange={this.inputChangeHandler} value = {this.state.newToken} />
+                        <input id="authTokenInput" type="text"  required onChange={this.inputChangeHandler} value = {this.state.newToken} 
+                            placeholder="40 digit Github OAuth Token" />
                     </div>
                     <div className={classes.FormControls}>
                         <button className={classes.Button} type="submit">Set New Token</button>

@@ -3,8 +3,8 @@ import * as actions from '../actions/actionTypes';
 const initialState = {
     oAuthToken: "",
     isAuthTokenValid: false,
-    repoOwner:"reactjs",
-    repoName:"react-tabs",
+    repoOwner:"",
+    repoName:"",
 }
 
 const reducer = (state=initialState, action) => {

@@ -8,10 +8,12 @@ const Header = props => {
     return(
         <div className={classes.RepoHeader}>
             <div className={classes.RepoGeneralInfo}>
-                <div className={classes.RepoTitle}><h3>{repo.nameWithOwner}</h3></div>
+                <div><h3>{repo.nameWithOwner}</h3></div>
                 <div>{repo.description}</div>
             </div>
-            <RepoDetails repository = {repo}/>
+            <div className={classes.RepoDetailContainer}>
+                <RepoDetails repository = {repo}/>
+            </div>
         </div>
     )
 };

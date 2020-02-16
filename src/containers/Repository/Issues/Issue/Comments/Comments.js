@@ -19,9 +19,10 @@ const Comments = props => {
 
     const onCommentChange = (event) => {
         setCommentSearchFilter(event.target.value);
-        console.log(commentSearchFilter);
+        // console.log(commentSearchFilter);
     }
 
+    //Getting details from URL
     let {repoOwner, repoName, issueNumber} = useParams();
 
     const query = GQL.getIssueComments;
@@ -31,7 +32,7 @@ const Comments = props => {
     const {loading, error, data, fetchMore} = useQuery(query, 
             {
                 variables:{repoName: repoName, repoOwner: repoOwner, issueNumber:Number(issueNumber), cursor:null},
-                notifyOnNetworkStatusChange: true
+                // notifyOnNetworkStatusChange: true
         });
     
     if(isNaN(issueNumber)) return (props.history.back());
@@ -48,7 +49,9 @@ const Comments = props => {
         <div className={classes.Container}>
             <div className={classes.IssueTop}>
                 <CommentHeader issue={issue} repoOwner={repoOwner} repoName ={repoName} issueNumber={issueNumber}/> 
-                <div className={classes.SearchComments}><CommentSearchBox onChange={onCommentChange}/></div>
+                <div className={classes.SearchComments}>
+                    <CommentSearchBox onChange={onCommentChange}/>
+                </div>
             </div>
             <hr />
             <div className={classes.Row}>
@@ -63,8 +66,7 @@ const Comments = props => {
                                 query:query,
                                 variables: {repoName: repoName, repoOwner: repoOwner, issueNumber:Number(issueNumber), cursor:cursor},
                                 updateQuery: (previousResult, {fetchMoreResult}) => {
-                                    // console.log(previousResult);
-                                    // console.log(fetchMoreResult);
+                                   
                                     //Merging newresult with the old result
                                     const newResult = cloneDeep(fetchMoreResult);
                                     const previousComments = previousResult.repository.issue.comments;
