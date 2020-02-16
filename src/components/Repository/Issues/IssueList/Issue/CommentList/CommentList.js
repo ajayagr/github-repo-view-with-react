@@ -3,7 +3,7 @@ import Comment from './Comment/Comment';
 
 const Comments = props => {
     const comments = props.comments.map(comment => {
-        if(comment.node.bodyText.includes(props.searchComment)) {
+        if(comment.node.bodyText.toLowerCase().includes(props.searchComment.toLowerCase())) {
             return <Comment comment={comment.node} key={comment.cursor} />
         }
         return null;
