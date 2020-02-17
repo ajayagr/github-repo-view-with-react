@@ -7,6 +7,7 @@
     overflow: auto;
     box-sizing: border-box;
     margin-bottom:3vh;
+    width:70vw;
 }
 
 .CommentBodyHeader{
@@ -40,6 +41,6 @@
 
 @media(min-width:768px){
     .CommentBody{
-        max-width: 70vw;
+        width: 56vw;
     }
 }
