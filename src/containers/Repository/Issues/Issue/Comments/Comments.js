@@ -5,13 +5,9 @@ import { connect } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import ErrorMessage from '../../../../../components/Error/Error';
 import Loading from '../../../../../components/Loading/Loading';
-import CommentHeader from '../../../../../components/Repository/Issues/IssueList/Issue/CommentList/Header/Header';
-import CommentSearchBox from '../../../../../components/Repository/Issues/IssueList/Issue/CommentList/CommentSearchBox/CommentSearchBox';
-import IssueDetail from '../../../../../components/Repository/Issues/IssueList/Issue/IssueDetail/IssueDetail';
-import IssueAssignmentDetail from '../../../../../components/Repository/Issues/IssueList/Issue/IssueDetail/IssueAssignmentDetail/IssueAssignmentDetail';
+
+import CommentsView from '../../../../../components/Repository/Issues/IssueList/Issue/Comments/CommentsView';
 import * as GQL from '../../../../../graphql/queries';
-import CommentList from '../../.././../../components/Repository/Issues/IssueList/Issue/CommentList/CommentList';
-import classes from './Comments.module.css';
 
 
 const Comments = props => {
@@ -46,51 +42,34 @@ const Comments = props => {
 
 
     return(
-        <div className={classes.Container}>
-            <div className={classes.IssueTop}>
-                <CommentHeader issue={issue} repoOwner={repoOwner} repoName ={repoName} issueNumber={issueNumber}/> 
-                <div className={classes.SearchComments}>
-                    <CommentSearchBox onChange={onCommentChange}/>
-                </div>
-            </div>
-            <hr />
-            <div className={classes.Row}>
-                <div className={classes.IssueComments}>
-                    <IssueDetail issue={issue} />
-                    <CommentList 
-                        searchComment = {commentSearchFilter}
-                        hasMore ={comments.pageInfo.hasNextPage}
-                        comments={comments.edges} 
-                        onLoadMore= {() => 
-                            fetchMore({
-                                query:query,
-                                variables: {repoName: repoName, repoOwner: repoOwner, issueNumber:Number(issueNumber), cursor:cursor},
-                                updateQuery: (previousResult, {fetchMoreResult}) => {
-                                   
-                                    //Merging newresult with the old result
-                                    const newResult = cloneDeep(fetchMoreResult);
-                                    const previousComments = previousResult.repository.issue.comments;
-                                    const newComments = fetchMoreResult.repository.issue.comments;
-                                    const newPageInfo = fetchMoreResult.repository.issue.comments.pageInfo;
+        <CommentsView
+            issue = {issue}
+            searchComment = {commentSearchFilter}
+            hasMore ={comments.pageInfo.hasNextPage}
+            comments={comments.edges} 
+            onCommentChange = {onCommentChange}
+            onLoadMore= {() => 
+                fetchMore({
+                    query:query,
+                    variables: {repoName: repoName, repoOwner: repoOwner, issueNumber:Number(issueNumber), cursor:cursor},
+                    updateQuery: (previousResult, {fetchMoreResult}) => {
+                        
+                        //Merging newresult with the old result
+                        const newResult = cloneDeep(fetchMoreResult);
+                        const previousComments = previousResult.repository.issue.comments;
+                        const newComments = fetchMoreResult.repository.issue.comments;
+                        const newPageInfo = fetchMoreResult.repository.issue.comments.pageInfo;
 
-                                    // console.log(newResult);
-                                    newResult.repository.issue.comments.pageInfo = newPageInfo;
-                                    newResult.repository.issue.comments.edges = [...previousComments.edges, ...newComments.edges];
+                        // console.log(newResult);
+                        newResult.repository.issue.comments.pageInfo = newPageInfo;
+                        newResult.repository.issue.comments.edges = [...previousComments.edges, ...newComments.edges];
 
-                                    // console.log(newResult);
-                                    return newResult;
-                                }
-                            })
-                        }
-                    />
-                </div>
-
-                <div className={classes.IssueDetails}>
-                    <IssueAssignmentDetail issue={issue} />
-                </div>
-                
-            </div>
-        </div>
+                        // console.log(newResult);
+                        return newResult;
+                    }
+                })
+            }
+        />
     )  
 }
 
